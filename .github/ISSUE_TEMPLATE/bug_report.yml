@@ -23,12 +23,15 @@ body:
       required: true
     attributes:
       label: What operating system image do you use?
+      default: 0
       options:
         - generic-x86-64 (Generic UEFI capable x86-64 systems)
         - generic-aarch64 (Generic UEFI capable aarch64 systems)
         - khadas-vim3 (Khadas VIM3)
         - odroid-c2 (Hardkernel ODROID-C2)
         - odroid-c4 (Hardkernel ODROID-C4)
+        - odroid-m1 (Hardkernel ODROID-M1)
+        - odroid-m1s (Hardkernel ODROID-M1S)
         - odroid-n2 (Hardkernel ODROID-N2/N2+)
         - odroid-xu4 (Hardkernel ODROID-XU4)
         - ova (for Virtual Machines)
@@ -37,12 +40,14 @@ body:
         - rpi3-64 (Raspberry Pi 3 64-bit OS)
         - rpi4  (Raspberry Pi 4/400 32-bit OS)
         - rpi4-64  (Raspberry Pi 4/400 64-bit OS)
+        - rpi5-64  (Raspberry Pi 5 64-bit OS)
         - tinker (ASUS Tinker Board/Tinker Board S)
         - yellow (Home Assistant Yellow)
+        - green (Home Assistant Green)
       description: >
-        Can be found in the [Configuration panel -> Settings -> Info](https://my.home-assistant.io/redirect/info/). It is listed as the `Board` value.
+        Can be found in [Settings -> System -> Repairs -> System Information](https://my.home-assistant.io/redirect/system_health/). It is listed as the `Board` value.
 
-        [![Open your Home Assistant instance and show your Home Assistant version information.](https://my.home-assistant.io/badges/info.svg)](https://my.home-assistant.io/redirect/info/)
+        [![Open your Home Assistant instance and show health information about your system.](https://my.home-assistant.io/badges/system_health.svg)](https://my.home-assistant.io/redirect/system_health/)
   - type: input
     validations:
       required: true
@@ -50,15 +55,26 @@ body:
       label: What version of Home Assistant Operating System is installed?
       placeholder: "6.6"
       description: >
-        Can be found in the [Configuration panel -> Settings -> Info](https://my.home-assistant.io/redirect/info/). It is listed as the `Host Operating System` value.
+        Can be found in [Settings -> System -> Repairs -> System Information (top right menu)](https://my.home-assistant.io/redirect/system_health/). It is listed as the `Host Operating System` value.
   - type: dropdown
     validations:
       required: true
     attributes:
-      label: Did you upgrade the Operating System.
+      label: Did the problem occur after upgrading the Operating System?
+      default: 0
       options:
-        - "Yes"
         - "No"
+        - "Yes"
+  - type: textarea
+    validations:
+      required: true
+    attributes:
+      label: Hardware details
+      description: >
+        Provide details about the hardware used for your install.
+        This is especially important for bare-metal x86 installations.
+        If you have any USB devices attached, please list them here.
+        For VMs, include the hypervisor type and version.
   - type: textarea
     validations:
       required: true
@@ -78,9 +94,10 @@ body:
     attributes:
       label: Anything in the Supervisor logs that might be useful for us?
       description: >
-        Supervisor Logs can be found under [Configuration panel -> Add-ons, Backup & Supervisor -> System](https://my.home-assistant.io/redirect/supervisor_logs/), then choose Log Provider `Supervisor`.
+        Supervisor Logs can be found in [Settings -> System -> Logs](https://my.home-assistant.io/redirect/logs/?provider=supervisor)
+        then choose `Supervisor` in the top right. Alternatively enter `ha supervisor logs` in the Home Assistant CLI.
 
-        [![Open your Home Assistant instance and show your Supervisor system logs.](https://my.home-assistant.io/badges/supervisor_logs.svg)](https://my.home-assistant.io/redirect/supervisor_logs/)
+        [![Open your Home Assistant instance and show your Supervisor system logs.](https://my.home-assistant.io/badges/supervisor_logs.svg)](https://my.home-assistant.io/redirect/logs/?provider=supervisor)
       render: txt
   - type: textarea
     validations:
@@ -88,16 +105,19 @@ body:
     attributes:
       label: Anything in the Host logs that might be useful for us?
       description: >
-        Supervisor Logs can be found under [Configuration panel -> Add-ons, Backup & Supervisor -> System](https://my.home-assistant.io/redirect/supervisor_logs/), then choose Log Provider `Host`.
+        Host Logs can be found in [Settings -> System -> Logs](https://my.home-assistant.io/redirect/logs/?provider=host)
+        then choose `Host` in the top right. Alternatively enter `ha host logs` in the Home Assistant CLI.
       render: txt
   - type: textarea
     attributes:
-      label: System Health information
+      label: System information
       description: >
         **Optional** Copy the full System Health in this text area.
 
-        Can be found in the [Configuration panel -> Settings -> Info](https://my.home-assistant.io/redirect/info/).
-        Use the copy icon on top right and choose `For GitHub`.
+        System information can be found in [Settings -> System -> Repairs -> System Information (top right menu)](https://my.home-assistant.io/redirect/system_health/),
+        Click the copy button at the bottom of the pop-up and paste it here.
+        
+        [![Open your Home Assistant instance and show health information about your system.](https://my.home-assistant.io/badges/system_health.svg)](https://my.home-assistant.io/redirect/system_health/)
   - type: textarea
     attributes:
       label: Additional information

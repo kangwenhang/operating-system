@@ -10,9 +10,6 @@ arm_64bit=1
 # Enable primary UART by default
 enable_uart=1
 
-# Free up full-fledged PL011 UART for J11
-dtoverlay=miniuart-bt
-
 # No HDMI on Yellow, but we can't set to 16 since we need the full firmware
 # for codecs
 gpu_mem=32
@@ -31,6 +28,10 @@ gpu_mem=32
 
 # Additional overlays and parameters are documented /boot/overlays/README
 
-[all]
+[cm4]
 device_tree=bcm2711-rpi-cm4-ha-yellow.dtb
 
+[cm5]
+device_tree=bcm2712-rpi-cm5-ha-yellow.dtb
+
+[all]
