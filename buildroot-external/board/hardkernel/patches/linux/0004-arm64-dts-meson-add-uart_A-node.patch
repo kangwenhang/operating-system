@@ -1,33 +1,30 @@
-From fee88e0053de7878977913311bdb153494aa6c61 Mon Sep 17 00:00:00 2001
-Message-Id: <fee88e0053de7878977913311bdb153494aa6c61.1646168061.git.stefan@agner.ch>
-In-Reply-To: <9f8390a715bc58e7423b65a18c4499761c84b819.1646168061.git.stefan@agner.ch>
-References: <9f8390a715bc58e7423b65a18c4499761c84b819.1646168061.git.stefan@agner.ch>
+From 742764eb039d8d96aa43afeb62a89b122073bb98 Mon Sep 17 00:00:00 2001
 From: Hyeonki Hong <hhk7734@gmail.com>
 Date: Fri, 27 Mar 2020 17:05:22 +0900
-Subject: [PATCH 4/7] arm64: dts: meson: add uart_A node
+Subject: [PATCH] arm64: dts: meson: add uart_A node
 
 The UART_A is available through J3 pin 8/10 and documented to be
 available as UART by default.
 
 Signed-off-by: Stefan Agner <stefan@agner.ch>
 ---
- arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi | 7 +++++++
+ arch/arm64/boot/dts/amlogic/meson-g12b-odroid.dtsi | 7 +++++++
  1 file changed, 7 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
-index 5ca75696bd5c..738eb0339333 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid.dtsi
+index 13624c6522abc..6a1330b40cf4d 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid.dtsi
 @@ -12,6 +12,7 @@
  / {
  	aliases {
  		serial0 = &uart_AO;
 +		serial1 = &uart_A;
  		ethernet0 = &ethmac;
- 		rtc0 = &rtc;
  		rtc1 = &vrtc;
-@@ -728,6 +729,12 @@ &toddr_c {
- 	status = "okay";
+ 	};
+@@ -496,6 +497,12 @@ &uart_AO {
+ 	pinctrl-names = "default";
  };
  
 +&uart_A {
@@ -36,9 +33,6 @@ index 5ca75696bd5c..738eb0339333 100644
 +	pinctrl-names = "default";
 +};
 +
- &uart_AO {
+ &usb {
  	status = "okay";
- 	pinctrl-0 = <&uart_ao_a_pins>;
--- 
-2.35.1
-
+ };
