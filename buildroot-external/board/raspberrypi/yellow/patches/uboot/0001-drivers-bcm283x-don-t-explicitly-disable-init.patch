@@ -1,8 +1,7 @@
-From 78704bc154d695ee16fdf8396f4d60b740190014 Mon Sep 17 00:00:00 2001
-Message-Id: <78704bc154d695ee16fdf8396f4d60b740190014.1650924333.git.stefan@agner.ch>
+From c3b3682d6314eee9b7d42926f96e1559b8bb91dd Mon Sep 17 00:00:00 2001
 From: Stefan Agner <stefan@agner.ch>
 Date: Thu, 14 Apr 2022 12:15:26 +0200
-Subject: [PATCH 1/5] drivers: bcm283x: don't explicitly disable init
+Subject: [PATCH] drivers: bcm283x: don't explicitly disable init
 
 It seems that the reason why init doesn't succeed is the lack of clock
 support in U-Boot. Setting the default clock of 48MHz for the PL011
@@ -19,10 +18,10 @@ Signed-off-by: Stefan Agner <stefan@agner.ch>
  2 files changed, 3 insertions(+), 6 deletions(-)
 
 diff --git a/drivers/serial/serial_bcm283x_pl011.c b/drivers/serial/serial_bcm283x_pl011.c
-index 2d2e970316..182274036c 100644
+index 2abc1c4658f..cfafa5fed91 100644
 --- a/drivers/serial/serial_bcm283x_pl011.c
 +++ b/drivers/serial/serial_bcm283x_pl011.c
-@@ -51,12 +51,6 @@ static int bcm283x_pl011_serial_probe(struct udevice *dev)
+@@ -50,12 +50,6 @@ static int bcm283x_pl011_serial_probe(struct udevice *dev)
  	if (ret)
  		return ret;
  
@@ -36,19 +35,14 @@ index 2d2e970316..182274036c 100644
  }
  
 diff --git a/include/configs/rpi.h b/include/configs/rpi.h
-index e24c94c7d2..98ba4dc052 100644
+index 8e56bdc84a8..c137bd7e19a 100644
 --- a/include/configs/rpi.h
 +++ b/include/configs/rpi.h
-@@ -40,6 +40,9 @@
- #define CONFIG_SYS_BOOTM_LEN		SZ_64M
- #endif
+@@ -31,4 +31,7 @@
+  */
+ #define CFG_SYS_SDRAM_SIZE		SZ_128M
  
-+/* Define PL011 default clock */
-+#define CONFIG_PL011_CLOCK		48000000
++/* PL011 Serial Configuration */
++#define CFG_PL011_CLOCK		48000000
 +
- /* Devices */
- /* GPIO */
- #define CONFIG_BCM2835_GPIO
--- 
-2.36.0
-
+ #endif

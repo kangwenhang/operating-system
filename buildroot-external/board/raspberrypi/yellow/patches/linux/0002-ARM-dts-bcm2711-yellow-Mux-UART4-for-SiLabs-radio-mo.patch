@@ -1,24 +1,20 @@
-From a4a63bb6f6789c00762b92f0469d10bac525d1f9 Mon Sep 17 00:00:00 2001
-Message-Id: <a4a63bb6f6789c00762b92f0469d10bac525d1f9.1659172941.git.stefan@agner.ch>
-In-Reply-To: <2d3d8c091bc692999a1c519c1dc1570cc8be2358.1659172941.git.stefan@agner.ch>
-References: <2d3d8c091bc692999a1c519c1dc1570cc8be2358.1659172941.git.stefan@agner.ch>
+From 7bc3b341d90c95dc17d3da0930801006b00d2046 Mon Sep 17 00:00:00 2001
 From: Stefan Agner <stefan@agner.ch>
 Date: Thu, 4 Mar 2021 14:33:09 +0100
-Subject: [PATCH 02/13] ARM: dts: bcm2711: yellow: Mux UART4 for SiLabs radio
- module
+Subject: [PATCH] ARM: dts: bcm2711: yellow: Mux UART4 for SiLabs radio module
 
 Enable UART4 by default and mux pins including hardware flow control.
 
 Signed-off-by: Stefan Agner <stefan@agner.ch>
 ---
- arch/arm/boot/dts/bcm2711-rpi-cm4-ha-yellow.dts | 16 ++++++++++++++--
+ .../dts/broadcom/bcm2711-rpi-cm4-ha-yellow.dts   | 16 ++++++++++++++--
  1 file changed, 14 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm/boot/dts/bcm2711-rpi-cm4-ha-yellow.dts b/arch/arm/boot/dts/bcm2711-rpi-cm4-ha-yellow.dts
-index 61d8c81d3de4..8db71876a78c 100644
---- a/arch/arm/boot/dts/bcm2711-rpi-cm4-ha-yellow.dts
-+++ b/arch/arm/boot/dts/bcm2711-rpi-cm4-ha-yellow.dts
-@@ -8,6 +8,10 @@ / {
+diff --git a/arch/arm/boot/dts/broadcom/bcm2711-rpi-cm4-ha-yellow.dts b/arch/arm/boot/dts/broadcom/bcm2711-rpi-cm4-ha-yellow.dts
+index f92936d7cf16b..fa93ab5ca639b 100644
+--- a/arch/arm/boot/dts/broadcom/bcm2711-rpi-cm4-ha-yellow.dts
++++ b/arch/arm/boot/dts/broadcom/bcm2711-rpi-cm4-ha-yellow.dts
+@@ -15,6 +15,10 @@ / {
  	compatible = "raspberrypi,4-compute-module-ha-yellow", "raspberrypi,4-compute-module", "brcm,bcm2711";
  	model = "Raspberry Pi Compute Module 4 on Home Assistant Yellow";
  
@@ -29,7 +25,7 @@ index 61d8c81d3de4..8db71876a78c 100644
  	chosen {
  		/* 8250 auxiliary UART instead of pl011 */
  		stdout-path = "serial1:115200n8";
-@@ -261,6 +265,14 @@ &uart1 {
+@@ -243,6 +247,14 @@ &uart1 {
  	status = "okay";
  };
  
@@ -41,10 +37,10 @@ index 61d8c81d3de4..8db71876a78c 100644
 +	status = "okay";
 +};
 +
- &vchiq {
- 	interrupts = <GIC_SPI 34 IRQ_TYPE_LEVEL_HIGH>;
+ &vc4 {
+ 	status = "okay";
  };
-@@ -488,9 +500,9 @@ uart3_pins: uart3_pins {
+@@ -467,9 +479,9 @@ uart3_pins: uart3_pins {
  	};
  
  	uart4_pins: uart4_pins {
@@ -56,6 +52,3 @@ index 61d8c81d3de4..8db71876a78c 100644
  	};
  
  	uart5_pins: uart5_pins {
--- 
-2.37.1
-

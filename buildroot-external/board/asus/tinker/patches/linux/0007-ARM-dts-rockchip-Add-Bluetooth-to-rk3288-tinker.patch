@@ -1,7 +1,4 @@
-From 392472dc977300a9f2a62159c105a6dfed878643 Mon Sep 17 00:00:00 2001
-Message-Id: <392472dc977300a9f2a62159c105a6dfed878643.1652225232.git.stefan@agner.ch>
-In-Reply-To: <ff0c5c49024da05b47d4fcc4d115761c43eef7a6.1652225232.git.stefan@agner.ch>
-References: <ff0c5c49024da05b47d4fcc4d115761c43eef7a6.1652225232.git.stefan@agner.ch>
+From 74227462bbe9236dca234dd24cce4191fa71bdf9 Mon Sep 17 00:00:00 2001
 From: Stefan Agner <stefan@agner.ch>
 Date: Tue, 10 May 2022 22:57:26 +0200
 Subject: [PATCH] ARM: dts: rockchip: Add Bluetooth to rk3288-tinker
@@ -11,14 +8,14 @@ for Realtek rtl8723bs Bluetooth device.
 
 Signed-off-by: Stefan Agner <stefan@agner.ch>
 ---
- arch/arm/boot/dts/rk3288-tinker.dtsi | 26 ++++++++++++++++++++++++++
+ arch/arm/boot/dts/rockchip/rk3288-tinker.dtsi | 26 +++++++++++++++++++
  1 file changed, 26 insertions(+)
 
-diff --git a/arch/arm/boot/dts/rk3288-tinker.dtsi b/arch/arm/boot/dts/rk3288-tinker.dtsi
-index cdff130d1292..e904c130dedc 100644
---- a/arch/arm/boot/dts/rk3288-tinker.dtsi
-+++ b/arch/arm/boot/dts/rk3288-tinker.dtsi
-@@ -388,6 +388,20 @@ bl_en: bl-en {
+diff --git a/arch/arm/boot/dts/rockchip/rk3288-tinker.dtsi b/arch/arm/boot/dts/rockchip/rk3288-tinker.dtsi
+index c7e79e5947206..5d261fae6e72a 100644
+--- a/arch/arm/boot/dts/rockchip/rk3288-tinker.dtsi
++++ b/arch/arm/boot/dts/rockchip/rk3288-tinker.dtsi
+@@ -386,6 +386,20 @@ bl_en: bl-en {
  		};
  	};
  
@@ -39,7 +36,7 @@ index cdff130d1292..e904c130dedc 100644
  	buttons {
  		pwrbtn: pwrbtn {
  			rockchip,pins = <0 RK_PA5 RK_FUNC_GPIO &pcfg_pull_up>;
-@@ -520,6 +534,18 @@ &tsadc {
+@@ -518,6 +532,18 @@ &tsadc {
  
  &uart0 {
  	status = "okay";
@@ -58,6 +55,3 @@ index cdff130d1292..e904c130dedc 100644
  };
  
  &uart1 {
--- 
-2.36.1
-
